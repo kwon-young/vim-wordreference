@@ -1,0 +1,27 @@
+*vim-wordreference.txt* A short multi line description of your plugin
+
+===============================================================================
+CONTENTS                                                    *vim-wordreference*
+
+    1. Intro ........................................ |vim-wordreference-intro|
+    2. Requirements .......................... |vim-wordreference-requirements|
+    3. Usage ........................................ |vim-wordreference-usage|
+    4. Licence .................................... |vim-wordreference-licence|
+===============================================================================
+1. Intro                                              *vim-wordreference-intro*
+
+Overview of plugin
+
+2. Requirements                                *vim-wordreference-requirements*
+
+What additional programs are required to run the plugin
+
+3. Usage                                              *vim-wordreference-usage*
+
+How to use the plugin. What functions does it give the user?
+
+4. Licence                                          *vim-wordreference-licence*
+
+This is open source make sure to include a licence
+
+vim:ft=help
