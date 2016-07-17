@@ -8,14 +8,29 @@ python sys.path.append(vim.eval('expand("<sfile>:h")'))
 " --------------------------------
 "  Function(s)
 " --------------------------------
-function! WrdRef()
+function! s:WrdRef(dic, word)
 python << endOfPython
 
-import vim_wordreference
-reload(vim_wordreference)
+import wordreference
+reload(wordreference)
 
-for n in range(5):
-    out = vim_wordreference.translate()
+def create_new_buffer(file_name, file_type, contents):
+    vim.command('rightbelow vsplit {0}'.format(file_name))
+    vim.command('normal! ggdG')
+    vim.command('setlocal filetype={0}'.format(file_type))
+    vim.command('setlocal buftype=nowrite')
+    for i, line in enumerate(contents):
+        cmd = u'call append({0}, "{1}")'.format(i, line)
+        vim.command(cmd)
+
+def make_translation_buffer():
+    dic = vim.eval("a:dic")
+    word = vim.eval("a:word")
+    contents = wordreference.wrdref.translate(dic, word)
+    contents = contents.split('\n')
+    create_new_buffer("Translation_buffer", "text", contents)
+
+make_translation_buffer()
 
 endOfPython
 endfunction
@@ -23,4 +38,4 @@ endfunction
 " --------------------------------
 "  Expose our commands to the user
 " --------------------------------
-command! WrdRef call WrdRef()
+command! -nargs=* WrdRef call s:WrdRef(<f-args>)
